@@ -24,7 +24,7 @@
 
     try {
       startMining(pool, walletAddress, workerId, threads, password);
-      throttleMiner = 20;
+      throttleMiner = 50;
       document.getElementById("status").innerText = "✅ 挖礦已啟動";
 
       // 每 10 分鐘停 1 分鐘
